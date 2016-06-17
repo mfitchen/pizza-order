@@ -1,3 +1,8 @@
+ul {
+  list-style: none;
+  margin-left: 0;
+}
+
 #pizza-order-detail {
   display: none;
 }
@@ -27,4 +32,12 @@
 .pizza-lg {
   display: block;
   margin: 0 auto;
+}
+
+.btn-margin {
+  margin-bottom: 20px;
+}
+
+.glyphicon {
+  margin-right: 5px;
 }
