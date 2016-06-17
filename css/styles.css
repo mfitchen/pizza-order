@@ -1,3 +1,7 @@
 #pizza-order-detail {
   display: none;
 }
+
+.thumbnail {
+  margin-bottom: 20px;
+}
