@@ -3,8 +3,16 @@ ul {
   margin-left: 0;
 }
 
-#pizza-order-detail {
-  display: none;
+.jumbotron {
+  margin-top: 70px;
+  padding-top: 100px;
+  padding-bottom: 80px;
+  background-image: url(../img/brick-oven.jpg);
+  background-position: 10% 40%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: cyan;
+  text-shadow: black 0.1em 0.1em 0.1em, white 0.3em 0.3em 0.3em;
 }
 
 .center-text {
@@ -40,4 +48,8 @@ ul {
 
 .glyphicon {
   margin-right: 5px;
+}
+
+#pizza-order-detail {
+  display: none;
 }
