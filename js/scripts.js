@@ -5,59 +5,68 @@ function Pizza(size) {
   this.pizzaingredients = [];
 };
 
-// Ingredients Prototype Method
-Pizza.prototype.ingredients = function() {
-  if(cheese === true) {
-    this.pizzaingredients.push("Cheese");
-  }
-
-  if(pepperoni === true) {
-    this.pizzaingredients.push("Pepperoni");
-  }
-
-  if(bellpeppers === true) {
-    this.pizzaingredients.push("Bell Peppers");
-  }
-
-  if(canadianbacon === true) {
-    this.pizzaingredients.push("Canadian Bacon");
-  }
-
-  if(pineapple === true) {
-    this.pizzaingredients.push("Pineapple");
-  }
-
-  if(olives === true) {
-    this.pizzaingredients.push("Olives");
-  }
-
-  if(mushrooms === true) {
-    this.pizzaingredients.push("Mushrooms");
-  }
-
-  if(xcheese === true) {
-    this.pizzaingredients.push("Extra Cheese");
-  }
-
-};
+// function Ingredients(chs, pep, blp, cbn, pna, olv, msh, xch) {
+//   this.addcheese = chs;
+//   this.addpepperoni = pep;
+//   this.addbellpeppers = blp;
+//   this.addcanadianbacon = cbn;
+//   this.addpineapple = pna;
+//   this.addolives = olv;
+//   this.addmushrooms = msh;
+//   this.addxcheese = xch;
+// };
 
 // Price Prototype Method
 Pizza.prototype.price = function() {
   var price = 7;
 
-  if(this.pizzasize === "Large") {
+  if (this.pizzasize === "Large") {
     price *= 3;
-  } else if(this.pizzasize === "Medium") {
+  } else if (this.pizzasize === "Medium") {
     price *= 2;
   } else {
     price *= 1;
   }
 
-  if(this.pizzaingredients.length === 0) {
+  if (this.pizzaingredients.length === 0) {
     price *= 1;
   } else {
-    price += (this.pizzaingredients.length - 1);
+    price += this.pizzaingredients.length;
   }
+
+  // if (this.pizzasize === "Large") {
+  //   price *= 3;
+  // } else if (this.pizzasize === "Medium") {
+  //   price *= 2;
+  // } else if (this.pizzasize === "Small") {
+  //   price *= 1;
+  // } else if (this.addcheese === "true") {
+  //   // this.pizzaingredients.push("Cheese");
+  //   price += 1;
+  // } else if (this.addpepperoni === "true") {
+  //   // this.pizzaingredients.push("Pepperoni");
+  //   price += 1;
+  // } else if (this.addbellpeppers === "true") {
+  //   // this.pizzaingredients.push("Bell Peppers");
+  //   price += 1;
+  // } else if (this.addcanadianbacon === "true") {
+  //   // this.pizzaingredients.push("Canadian Bacon");
+  //   price += 1;
+  // } else if (this.addpineapple === "true") {
+  //   // this.pizzaingredients.push("Pineapple");
+  //   price += 1;
+  // } else if (this.addolives === "true") {
+  //   // this.pizzaingredients.push("Olives");
+  //   price += 1;
+  // } else if (this.addmushrooms === "true") {
+  //   // this.pizzaingredients.push("Mushrooms");
+  //   price += 1;
+  // } else if (this.addxcheese === "true") {
+  //   // this.pizzaingredients.push("Extra Cheese");
+  //   price += 1;
+  // } else {
+  //   price *= 1;
+  // }
 
   return price;
 
@@ -69,28 +78,20 @@ $(document).ready(function() {
     event.preventDefault();
 
     var inputtedPizzaSize = $("select#pizza-size").val();
-
-    var cheese = $("input:checkbox[name=cheese]:checked").val();
-    var pepperoni = $("input:checkbox[name=pepperoni]:checked").val();
-    var bellpeppers = $("input:checkbox[name=bell-peppers]:checked").val();
-    var canadianbacon = $("input:checkbox[name=canadian-bacon]:checked").val();
-    var pineapple = $("input:checkbox[name=pineapple]:checked").val();
-    var olives = $("input:checkbox[name=olives]:checked").val();
-    var mushrooms = $("input:checkbox[name=mushrooms]:checked").val();
-    var xcheese = $("input:checkbox[name=x-cheese]:checked").val();
-
     var newPizza = new Pizza(inputtedPizzaSize);
+
+    $.each($("input[name='toppings']:checked"), function() {
+      newPizza.pizzaingredients.push($(this).val());
+    });
 
     $("ul#pizza-order-list").append("<li><span class='pizzaOrder'>" + newPizza.pizzasize + " Pizza" + "</span></li>");
 
-    newPizza.ingredients(cheese, pepperoni, bellpeppers, canadianbacon, pineapple, olives, mushrooms, xcheese);
-
     $(".pizzaOrder").last().click(function() {
       $("#pizza-order-detail").show();
-      // $("#show-ticket h2").html('<img src="img/' + newTicket.poster() + '">');
       $(".pizza-size").text(newPizza.pizzasize);
+      $(".pizza-ingredients").text(newPizza.pizzaingredients);
       $(".order-total").text(newPizza.price());
-    });
 
+    });
   });
 });
