@@ -2,6 +2,29 @@
   display: none;
 }
 
+.center-text {
+  text-align: center;
+}
+
 .thumbnail {
   margin-bottom: 20px;
+}
+
+.pizza-sm {
+  width: 50%;
+  height: 50%;
+  display: block;
+  margin: 0 auto;
+}
+
+.pizza-md {
+  width: 75%;
+  height: 75%;
+  display: block;
+  margin: 0 auto;
+}
+
+.pizza-lg {
+  display: block;
+  margin: 0 auto;
 }
